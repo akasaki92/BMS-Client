@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 
 import "./plugins/helper";
+import "./plugins/axios";
 import "./registerServiceWorker";
 import vuetify from "./plugins/vuetify";
 import VueMobileDetection from "vue-mobile-detection";
