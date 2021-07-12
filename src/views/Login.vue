@@ -1,10 +1,11 @@
 <template>
 	<div>
-		<h3>{{ appName }}</h3>
-		<!-- <div class="ma-2 pa-0"></div> -->
+		<div class="ma-2 pa-0">
+			<h3>{{ appName }}</h3>
+		</div>
 		<v-container grid-list-sm fluid>
 			<v-form ref="form" v-model="valid" lazy-validation>
-				<v-text-field label="Username" v-model="username" required autofocus outlined></v-text-field>
+				<v-text-field label="Username" v-model="username" :rules="usernameRules" required outlined></v-text-field>
 				<v-text-field
 					label="Password"
 					v-model="password"
@@ -31,8 +32,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-// import { mapGetters, mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
 	name: "Login",
 	data() {
@@ -40,6 +40,7 @@ export default {
 			valid: true,
 			showPassword: false,
 			username: "",
+			usernameRules: [v => !!v || "Username is required"],
 			password: "",
 			passwordRules: [
 				v => !!v || "Password is required",
@@ -64,32 +65,34 @@ export default {
 					username: this.username,
 					password: this.password
 				};
-				this.axios.post("/login", formData)
-					.then((response) => {
+				this.axios
+					.post("/login", formData)
+					.then(response => {
 						let { data } = response.data;
-						this.setAuth(data)
-						if(this.user.id > 0){ 
+						this.setAuth(data);
+						if (this.user.id > 0) {
 							this.setAlert({
 								status: true,
 								color: "success",
 								text: "Login success"
 							});
-							if (this.prevUrl.length > 0) this.$router.push(this.prevUrl)
+							if (this.prevUrl.length > 0)
+								this.$router.push(this.prevUrl);
 						} else {
 							this.setAlert({
 								status: true,
 								color: "error",
 								text: "Login Failed"
-							})
+							});
 						}
 					})
-					.catch((error) => {
-						let {data} = error.response;
+					.catch(error => {
+						let { data } = error.response;
 						this.setAlert({
 							status: true,
 							color: "error",
 							text: data.message
-						})
+						});
 					});
 			}
 		},
