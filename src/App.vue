@@ -23,7 +23,7 @@
 			<v-list>Side menu</v-list>
 		</v-navigation-drawer>
 		<keep-alive></keep-alive>
-		<v-sheet id="scrolling-techniques" class="overflow-y-auto"> 
+		<v-sheet id="scrolling-techniques" class="overflow-y-auto">
 			<v-main>
 				<v-container fluid>
 					<v-slide-y-transition>
@@ -32,10 +32,13 @@
 				</v-container>
 			</v-main>
 			<v-footer absolute app>
-				<v-card-text class="text-center">
-					&copy; {{ new Date().getFullYear() }} -
-					<strong>Hikiko Teams</strong>
+				<v-card-text>
+					<div class="d-flex flex-column">
+						<v-card-text class="pa-1" outlined tile>About</v-card-text>
+						<v-card-text class="pa-1" outlined tile>Contact us</v-card-text>
+					</div>
 				</v-card-text>
+				<v-card-text class="text-center">&copy; BMS Teams {{ new Date().getFullYear() }}</v-card-text>
 			</v-footer>
 		</v-sheet>
 	</v-app>
