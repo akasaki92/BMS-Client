@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<div class="ma-2 pa-0">
+			<h3>Register</h3>
+		</div>
 		<v-container grid-list-sm fluid>
 			<v-form ref="form" v-model="valid" lazy-validation>
 				<v-text-field label="Username" v-model="username" :rules="usernameRules" required outlined></v-text-field>
@@ -17,6 +20,10 @@
 				></v-text-field>
 				<div>
 					<v-btn block color="primary" elevation="2" :disabled="!valid" x-large @click="submit">Register</v-btn>
+				</div>
+				<div class="ma-0 pa-0 mt-2 pt-1 text-center">
+					Sudah punya akun?
+					<v-btn small text to="/login" class="blue--text">Login disini</v-btn>
 				</div>
 			</v-form>
 		</v-container>
